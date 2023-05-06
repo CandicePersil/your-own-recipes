@@ -2,7 +2,7 @@ POETRY ?= poetry
 POETRY_CONF ?= ./pyproject.toml
 PYTHON ?= python3
 PIP ?= pip3
-FLAKE8 ?= flake8
+FLAKE8 ?= $(POETRY) run $(PYTHON) -m flake8
 
 
 # Check that virtual_env is set
@@ -17,7 +17,7 @@ packages: ## Install dependencies
 lint: ## Run flake8 on python files
 	@:$(call check_venv)
 	@echo "-> Running flake8 on every file in the repo"
-	@find . -not -path './env*' -name '*.py' -exec $(POETRY) run $(PYTHON) -m $(FLAKE8) {} + && echo "-> flake8 check passed"
+	@find . -name '*.py' -exec $(FLAKE8) {} + && echo "-> flake8 check passed"
 
 help: ## details available commands
 	@echo "-- Makefile commands --"
