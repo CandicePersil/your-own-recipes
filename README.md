@@ -14,15 +14,40 @@ Python command launched via `make` will fail if the poetry is missing.
 
 ## Use the Makefile
 
-A provided `Makefile` has several rules built to it.
+A provided `Makefile` has several rules built to it. <br/>
 `make help` gives you an overview of it.
 
 ## Virtualenv, pip and package
 
 Before running the interpreter, make sure poetry is installed,
-pyproject.toml exists and packages are installed (make packages).
+pyproject.toml exists and packages are installed:
+```shell
+make packages
+```
 
 ## Database
 
+### Create and run
 Create database using a docker compose a basic docker image:
-docker exec -it your-own-recipes-db-1 psql -U dbadminuser postgres
+```shell
+make db-start
+```
+
+### Connect to psql shell
+```shell
+make db-connect
+```
+
+## Application
+
+Run the application using
+```shell
+make run
+```
+Make run should trigger manage.py makemigrations and manage.py migrate.
+
+It is possible to call both using:
+```shell
+make db-makemigrations
+make db-migrate
+```
