@@ -10,11 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
+
 from pathlib import Path
+from environs import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+env = Env()
+env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -75,8 +79,12 @@ WSGI_APPLICATION = 'green_lion.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'USER': env.str('POSTGRES_USER'),
+        'NAME': env.str('POSTGRES_NAME'),
+        'PASSWORD': env.str('POSTGRES_PASSWORD'),
+        'HOST': BASE_DIR / env.str('POSTGRES_SOCKET_HOST_PATH'),
+        'PORT': '5432',
     }
 }
 

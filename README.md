@@ -24,5 +24,5 @@ pyproject.toml exists and packages are installed (make packages).
 
 ## Database
 
-Create database in a docker and use a docker compose ?
-Kube ?
+Create database using a docker compose a basic docker image:
+docker exec -it your-own-recipes-db-1 psql -U dbadminuser postgres

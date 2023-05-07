@@ -10,6 +10,8 @@ packages = [{include = "your_own_recipes"}]
 python = "^3.10"
 Django = "4.2"
 flake8 = "^6.0.0"
+psycopg = "^3.1.9"
+environs = "^9.5.0"
 
 
 [build-system]
