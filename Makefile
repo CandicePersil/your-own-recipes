@@ -3,6 +3,7 @@ POETRY_CONF ?= ./pyproject.toml
 PYTHON ?= python3
 PIP ?= pip3
 FLAKE8 ?= $(POETRY) run $(PYTHON) -m flake8
+APP ?= your_own_recipes
 
 
 # Check that virtual_env is set
@@ -32,10 +33,10 @@ db-connect: ## Connect to the postgress database with psql
 	$(POETRY) run $(PYTHON) manage.py dbshell
 
 db-makemigrations: ## Generate migration files if changes
-	$(POETRY) run $(PYTHON) manage.py makemigrations
+	$(POETRY) run $(PYTHON) manage.py makemigrations $(APP)
 
 db-migrate: db-makemigrations ## Migrate new changes of django database
-	$(POETRY) run $(PYTHON) manage.py migrate
+	$(POETRY) run $(PYTHON) manage.py migrate $(APP)
 
 run: db-migrate ## Run django application
 	$(POETRY) run $(PYTHON) manage.py runserver
