@@ -31,9 +31,7 @@ class UnitOfMeasurement(models.TextChoices):
 class Product(models.Model):
     label = models.CharField(max_length=300)
     type = models.CharField(
-        max_length=30,
-        choices=ProductType.choices,
-        default=ProductType.VEGETABLES_BEANS
+        max_length=30, choices=ProductType.choices, default=ProductType.VEGETABLES_BEANS
     )
 
 
@@ -50,7 +48,7 @@ class Ingredient(models.Model):
 class Step(models.Model):
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
     instruction = models.CharField(max_length=2000)
-    next_step = models.ForeignKey('self', on_delete=models.CASCADE)
+    next_step = models.ForeignKey("self", on_delete=models.CASCADE)
 
 
 class Recipe(models.Model):

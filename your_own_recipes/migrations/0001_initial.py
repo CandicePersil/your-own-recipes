@@ -5,50 +5,137 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Ingredient',
+            name="Ingredient",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.IntegerField(blank=None)),
-                ('unit', models.CharField(choices=[('MILLILITER', 'Millimeter'), ('GRAM', 'Gram'), ('POUND', 'Pound'), ('TEASPOON', 'Teaspon'), ('DESSERTSPOON', 'Dessertspoon'), ('TABLESPOON', 'Tablespoon'), ('CUP', 'Cup'), ('POINT', 'Point'), ('QUART', 'Quart'), ('GALLON', 'Gallon'), ('UNIT', 'Unit')], default='UNIT', max_length=20)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("quantity", models.IntegerField(blank=None)),
+                (
+                    "unit",
+                    models.CharField(
+                        choices=[
+                            ("MILLILITER", "Millimeter"),
+                            ("GRAM", "Gram"),
+                            ("POUND", "Pound"),
+                            ("TEASPOON", "Teaspon"),
+                            ("DESSERTSPOON", "Dessertspoon"),
+                            ("TABLESPOON", "Tablespoon"),
+                            ("CUP", "Cup"),
+                            ("POINT", "Point"),
+                            ("QUART", "Quart"),
+                            ("GALLON", "Gallon"),
+                            ("UNIT", "Unit"),
+                        ],
+                        default="UNIT",
+                        max_length=20,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('label', models.CharField(max_length=300)),
-                ('type', models.CharField(choices=[('VEGETABLES_BEANS', 'Vegetables, legumes and beans'), ('FRUITS', 'Fruits'), ('GRAINS_CEREALS_NUTS', 'Grains, cereals and nuts'), ('MEAT_POULTRY', 'Meat and poultry'), ('FISH_SEAFOOD', 'Fish and seafood'), ('DAIRY_FOODS', 'Dairy foods'), ('FATS_OIL_SWEETS', 'Fats, oils and sweets'), ('SEASONING', 'Seasoning'), ('ALCOHOL', 'Alcohol')], default='VEGETABLES_BEANS', max_length=30)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("label", models.CharField(max_length=300)),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("VEGETABLES_BEANS", "Vegetables, legumes and beans"),
+                            ("FRUITS", "Fruits"),
+                            ("GRAINS_CEREALS_NUTS", "Grains, cereals and nuts"),
+                            ("MEAT_POULTRY", "Meat and poultry"),
+                            ("FISH_SEAFOOD", "Fish and seafood"),
+                            ("DAIRY_FOODS", "Dairy foods"),
+                            ("FATS_OIL_SWEETS", "Fats, oils and sweets"),
+                            ("SEASONING", "Seasoning"),
+                            ("ALCOHOL", "Alcohol"),
+                        ],
+                        default="VEGETABLES_BEANS",
+                        max_length=30,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Step',
+            name="Step",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('instruction', models.CharField(max_length=2000)),
-                ('ingredient', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='your_own_recipes.ingredient')),
-                ('next_step', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='your_own_recipes.step')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("instruction", models.CharField(max_length=2000)),
+                (
+                    "ingredient",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="your_own_recipes.ingredient",
+                    ),
+                ),
+                (
+                    "next_step",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="your_own_recipes.step",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Recipe',
+            name="Recipe",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('label', models.CharField(max_length=50)),
-                ('description', models.CharField(max_length=500)),
-                ('step', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='your_own_recipes.step')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("label", models.CharField(max_length=50)),
+                ("description", models.CharField(max_length=500)),
+                (
+                    "step",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="your_own_recipes.step",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='ingredient',
-            name='product',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='your_own_recipes.product'),
+            model_name="ingredient",
+            name="product",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="your_own_recipes.product",
+            ),
         ),
     ]
