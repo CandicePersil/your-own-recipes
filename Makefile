@@ -4,7 +4,7 @@ PYTHON ?= python3
 PIP ?= pip3
 FLAKE8 ?= $(POETRY) run $(PYTHON) -m flake8
 APP ?= your_own_recipes
-
+PYSCRIPT ?= manage.py
 
 # Check that virtual_env is set
 check_venv = \
@@ -20,6 +20,9 @@ lint: ## Run flake8 on python files
 	@echo "-> Running flake8 on every file in the repo"
 	@find . -name '*.py' -exec $(FLAKE8) {} + \
 		&& echo "-> flake8 check passed"
+
+debug: ## Debug python scripts
+	$(POETRY) run $(PYTHON) -m pdb $(PYSCRIPT)
 
 Dockerfile: ## Build if changes in docker file
 	docker compose build
