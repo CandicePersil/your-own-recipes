@@ -21,6 +21,14 @@ lint: ## Run flake8 on python files
 	@find . -name '*.py' -exec $(FLAKE8) {} + \
 		&& echo "-> flake8 check passed"
 
+check-format: ## Run black to format files
+	@echo "-> Running black to auto format files"
+	$(POETRY) run $(PYTHON) -m black --check --diff .
+
+format: ## Run black to format files
+	@echo "-> Running black to auto format files"
+	$(POETRY) run $(PYTHON) -m black .
+
 debug: ## Debug python scripts
 	$(POETRY) run $(PYTHON) -m pdb $(PYSCRIPT)
 
