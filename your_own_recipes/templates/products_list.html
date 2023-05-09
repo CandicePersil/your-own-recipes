@@ -1,0 +1,13 @@
+{% load rest_framework  %}
+
+<html>
+    <body>
+    <h1>List of Products</h1>
+    <ul>
+        {% for product in products %}
+        <h3>{{ product.label }}</h3>
+        <p>{{ product.type }}</p>
+        {% endfor %}
+    </ul>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+{% load rest_framework  %}
+
+<html>
+    <body>
+        <form action="{% url 'products-edit'%}" method="POST">
+            {% csrf_token %}
+            {% render_form serializer %}
+            <input type="submit" value="Save">
+        </form>
+        {% if created %}
+            <p>Product stored in db</p>
+        {% endif %}
+        {% if not created and error %}
+            <p>Error while trying to create a product: {{ error }}</p>
+        {% endif %}
+    </body>
+</html>

@@ -31,8 +31,13 @@ class UnitOfMeasurement(models.TextChoices):
 class Product(models.Model):
     label = models.CharField(max_length=300)
     type = models.CharField(
-        max_length=30, choices=ProductType.choices, default=ProductType.VEGETABLES_BEANS
+        max_length=30,
+        choices=ProductType.choices,
+        default=ProductType.VEGETABLES_BEANS,
     )
+
+    class Meta:
+        unique_together = ("label", "type")
 
 
 class Ingredient(models.Model):
