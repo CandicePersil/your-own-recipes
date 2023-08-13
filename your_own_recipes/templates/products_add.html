@@ -2,7 +2,8 @@
 
 <html>
     <body>
-        <form action="{% url 'products-edit'%}" method="POST">
+        <h2>Add a new product</h2>
+        <form action="{% url 'products-add'%}" method="POST">
             {% csrf_token %}
             {% render_form serializer %}
             <input type="submit" value="Save">

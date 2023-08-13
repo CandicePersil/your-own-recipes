@@ -11,4 +11,4 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = recipes_models.Product
-        fields = ("label", "type")
+        fields = ("label", "type", "id")

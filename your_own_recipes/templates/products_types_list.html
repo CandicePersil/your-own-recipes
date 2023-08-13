@@ -1,0 +1,13 @@
+{% load rest_framework  %}
+
+<html>
+    <body>
+    <h1>List of Products Types</h1>
+    <ul>
+        {% for type in types %}
+            {% csrf_token %}
+            <a href="{% url 'products-by-types' type %}"><h4>{{ type }}</h4></a>
+        {% endfor %}
+    </ul>
+    </body>
+</html>
