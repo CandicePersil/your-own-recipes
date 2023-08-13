@@ -3,7 +3,9 @@
 <html>
     <body>
         <h2>Product detail</h2>
-        <p>label: {{ product.label }}</p>
-        <p>type: {{ product.type }}</p>
+        <form method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Update">
+        </form>
     </body>
 </html>

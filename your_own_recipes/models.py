@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 
@@ -38,6 +39,9 @@ class Product(models.Model):
 
     class Meta:
         unique_together = ("label", "type")
+
+    def get_absolute_url(self):
+        return reverse('product', args=(self.id,))
 
 
 class Ingredient(models.Model):

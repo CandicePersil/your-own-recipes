@@ -1,7 +1,8 @@
 from django.forms import formset_factory
 from django.http import Http404
-from django.shortcuts import get_list_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404
 from django.shortcuts import render, redirect
+from django.views.generic.edit import UpdateView
 from django.views.generic.base import TemplateView
 from rest_framework.views import APIView
 from rest_framework.renderers import TemplateHTMLRenderer
@@ -21,6 +22,10 @@ class ProductView(TemplateView):
         context["product"] = recipes_models.Product.objects.get(id=context["id"])
         return context
 
+class ProductUpdateView(UpdateView):
+    model = recipes_models.Product
+    fields = ["label", "type"]
+    template_name = "product_details.html"
 
 class ProductViewSet(viewsets.ViewSet):
     renderer_classes = [TemplateHTMLRenderer]
